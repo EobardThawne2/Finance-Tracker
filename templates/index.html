@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Finance Tracker - Modern Expense Management{% endblock %}
+
+{% block content %}
+<div class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">AI-Powered Financial Insights</div>
+            <h1>Track expenses. Predict the future.</h1>
+            <p class="hero-subtitle">
+                A purpose-built tool for personal finance management. Analyze spending patterns, 
+                get AI predictions, and take control of your financial journey.
+            </p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-large">Start for free</a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline btn-large">Sign in</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-graphic">
+                <div class="chart-preview">
+                    <div class="bar" style="height: 45%"></div>
+                    <div class="bar" style="height: 65%"></div>
+                    <div class="bar" style="height: 55%"></div>
+                    <div class="bar" style="height: 80%"></div>
+                    <div class="bar" style="height: 70%"></div>
+                    <div class="bar" style="height: 90%"></div>
+                    <div class="bar" style="height: 60%"></div>
+                    <div class="bar" style="height: 75%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Built for modern financial tracking</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Deep Analytics</h3>
+                <p>Powered by Pandas for comprehensive spending analysis. Understand where your money goes with detailed breakdowns.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>ML Predictions</h3>
+                <p>Scikit-learn powered forecasting predicts your next month's spending with confidence intervals.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💱</div>
+                <h3>Multi-Currency</h3>
+                <p>Track expenses in any currency. Automatic conversion to your base currency with live exchange rates.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Visual Reports</h3>
+                <p>Matplotlib-generated charts and graphs to visualize trends, patterns, and anomalies in your spending.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure by Default</h3>
+                <p>SHA-256 hashed passwords and secure session management. Your financial data stays protected.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Built with Flask for speed. Instant expense logging and real-time dashboard updates.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <h2>Get started in minutes</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Create Account</h3>
+                <p>Sign up in seconds with just a username and password</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Log Expenses</h3>
+                <p>Add expenses with category, amount, and optional notes</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Get Insights</h3>
+                <p>View analytics, trends, and AI-powered predictions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Start tracking today</h2>
+            <p>Join users who have taken control of their finances with data-driven insights.</p>
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-large">Create free account</a>
+        </div>
+    </section>
+</div>
+{% endblock %}

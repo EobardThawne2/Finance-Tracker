@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - Finance Tracker{% endblock %}
+
+{% block content %}
+<div class="analytics-page">
+    <div class="page-header">
+        <div>
+            <h1>Analytics</h1>
+            <p class="page-subtitle">Comprehensive analysis of your spending patterns</p>
+        </div>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="analytics-stats">
+        <div class="stat-card">
+            <div class="stat-header">This Month</div>
+            <div class="stat-value">₹{{ "{:,.2f}".format(monthly_summary.total) }}</div>
+            <div class="stat-detail">{{ monthly_summary.count }} transactions</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">Daily Average</div>
+            <div class="stat-value">₹{{ "{:,.2f}".format(monthly_summary.daily_avg) }}</div>
+            <div class="stat-detail">per day</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">Last 30 Days</div>
+            <div class="stat-value">₹{{ "{:,.2f}".format(stats.total_30_days) }}</div>
+            <div class="stat-detail">{{ stats.expense_count_30_days }} expenses</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-header">Last 90 Days</div>
+            <div class="stat-value">₹{{ "{:,.2f}".format(stats.total_90_days) }}</div>
+            <div class="stat-detail">quarterly total</div>
+        </div>
+    </div>
+
+    <!-- Category Analysis -->
+    <div class="analytics-section">
+        <h2>Category analysis</h2>
+        <div class="analytics-grid">
+            <div class="chart-card">
+                <h3>Spending distribution</h3>
+                {% if pie_chart %}
+                    <img src="data:image/png;base64,{{ pie_chart }}" alt="Category Pie Chart" class="chart-image">
+                {% else %}
+                    <div class="no-data">No data available yet</div>
+                {% endif %}
+            </div>
+            <div class="chart-card">
+                <h3>Category breakdown</h3>
+                {% if category_bar_chart %}
+                    <img src="data:image/png;base64,{{ category_bar_chart }}" alt="Category Bar Chart" class="chart-image">
+                {% else %}
+                    <div class="no-data">No data available yet</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Category Table -->
+        <div class="data-card">
+            <h3>Category-wise spending (last 3 months)</h3>
+            {% if category_distribution %}
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Percentage</th>
+                            <th>Distribution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category, percentage in category_distribution.items() %}
+                            <tr>
+                                <td>{{ category }}</td>
+                                <td>{{ percentage }}%</td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: {{ percentage }}%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="no-data">No category data available</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Trends Section -->
+    <div class="analytics-section">
+        <h2>Spending trends</h2>
+        <div class="analytics-grid">
+            <div class="chart-card">
+                <h3>Monthly trend</h3>
+                {% if monthly_chart %}
+                    <img src="data:image/png;base64,{{ monthly_chart }}" alt="Monthly Trend" class="chart-image">
+                {% else %}
+                    <div class="no-data">No data available yet</div>
+                {% endif %}
+            </div>
+            <div class="chart-card">
+                <h3>Daily spending (last 30 days)</h3>
+                {% if daily_trend_chart %}
+                    <img src="data:image/png;base64,{{ daily_trend_chart }}" alt="Daily Trend" class="chart-image">
+                {% else %}
+                    <div class="no-data">No data available yet</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Monthly Totals Table -->
+        <div class="data-card">
+            <h3>Monthly totals</h3>
+            {% if monthly_totals %}
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Total spending</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for month, total in monthly_totals.items() %}
+                            <tr>
+                                <td>{{ month }}</td>
+                                <td>₹{{ "{:,.2f}".format(total) }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="no-data">No monthly data available</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Key Insights -->
+    <div class="analytics-section">
+        <h2>Key insights</h2>
+        <div class="insights-grid">
+            <div class="insight-card">
+                <div class="insight-icon">🔝</div>
+                <div class="insight-content">
+                    <h4>Highest Category</h4>
+                    <p class="insight-value">{{ stats.highest_category }}</p>
+                </div>
+            </div>
+            <div class="insight-card">
+                <div class="insight-icon">📉</div>
+                <div class="insight-content">
+                    <h4>Lowest Category</h4>
+                    <p class="insight-value">{{ stats.lowest_category }}</p>
+                </div>
+            </div>
+            <div class="insight-card">
+                <div class="insight-icon">💵</div>
+                <div class="insight-content">
+                    <h4>Average Expense</h4>
+                    <p class="insight-value">₹{{ "{:,.2f}".format(stats.average_expense) }}</p>
+                </div>
+            </div>
+            <div class="insight-card">
+                <div class="insight-icon">⬆️</div>
+                <div class="insight-content">
+                    <h4>Highest Single Expense</h4>
+                    <p class="insight-value">₹{{ "{:,.2f}".format(stats.highest_expense) }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Savings Estimation -->
+    <div class="analytics-section">
+        <h2>Savings estimation</h2>
+        <div class="savings-card">
+            <div class="savings-item">
+                <span class="savings-label">Assumed monthly income</span>
+                <span class="savings-value">₹{{ "{:,.2f}".format(savings.income) }}</span>
+            </div>
+            <div class="savings-item">
+                <span class="savings-label">Spent this month</span>
+                <span class="savings-value expense">₹{{ "{:,.2f}".format(savings.spent) }}</span>
+            </div>
+            <div class="savings-divider"></div>
+            <div class="savings-item total">
+                <span class="savings-label">Estimated savings</span>
+                <span class="savings-value {% if savings.savings >= 0 %}positive{% else %}negative{% endif %}">
+                    ₹{{ "{:,.2f}".format(savings.savings) }}
+                </span>
+            </div>
+            <div class="savings-rate">
+                <div class="rate-bar">
+                    <div class="rate-fill" style="width: {{ [savings.savings_rate, 100]|min }}%"></div>
+                </div>
+                <span>{{ savings.savings_rate }}% savings rate</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

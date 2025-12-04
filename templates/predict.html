@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}Predictions - Finance Tracker{% endblock %}
+
+{% block content %}
+<div class="predict-page">
+    <div class="page-header">
+        <div>
+            <h1>Predictions</h1>
+            <p class="page-subtitle">AI-powered insights into your future spending</p>
+        </div>
+    </div>
+
+    <!-- Main Prediction -->
+    <div class="prediction-hero">
+        <div class="prediction-card main-prediction">
+            <div class="prediction-header">
+                <span class="prediction-label">Next month's predicted spending</span>
+                {% if prediction.confidence %}
+                    <span class="confidence-badge badge-{{ prediction.confidence }}">
+                        {{ prediction.confidence|title }} confidence
+                    </span>
+                {% endif %}
+            </div>
+            
+            {% if prediction.prediction %}
+                <div class="prediction-value">
+                    ₹{{ "{:,.2f}".format(prediction.prediction) }}
+                </div>
+                
+                <div class="prediction-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Historical average</span>
+                        <span class="detail-value">₹{{ "{:,.2f}".format(prediction.historical_average) }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Trend</span>
+                        <span class="detail-value trend-{{ prediction.trend }}">
+                            {% if prediction.trend == 'increasing' %}📈{% else %}📉{% endif %}
+                            {{ prediction.trend|title }}
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Monthly change</span>
+                        <span class="detail-value">
+                            {% if prediction.monthly_change >= 0 %}+{% endif %}₹{{ "{:,.2f}".format(prediction.monthly_change) }}
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Model accuracy (R²)</span>
+                        <span class="detail-value">{{ (prediction.r_squared * 100)|round(1) }}%</span>
+                    </div>
+                </div>
+            {% else %}
+                <div class="no-prediction">
+                    <div class="no-prediction-icon">📊</div>
+                    <h3>Insufficient data</h3>
+                    <p>{{ prediction.message }}</p>
+                    <a href="{{ url_for('add_expense_page') }}" class="btn btn-primary">Add more expenses</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Comparison Chart -->
+    <div class="prediction-section">
+        <h2>Actual vs predicted</h2>
+        <div class="chart-card large">
+            {% if comparison_chart %}
+                <img src="data:image/png;base64,{{ comparison_chart }}" alt="Prediction Comparison" class="chart-image">
+            {% else %}
+                <div class="no-data">Not enough data for comparison chart</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Forecast -->
+    {% if forecast %}
+        <div class="prediction-section">
+            <h2>3-month forecast</h2>
+            <div class="forecast-cards">
+                {% for item in forecast %}
+                    <div class="forecast-card">
+                        <div class="forecast-month">{{ item.month }}</div>
+                        <div class="forecast-amount">₹{{ "{:,.2f}".format(item.predicted_spending) }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Pattern Analysis -->
+    <div class="prediction-section">
+        <h2>Spending pattern analysis</h2>
+        <div class="pattern-card">
+            <div class="pattern-header">
+                <span class="pattern-trend {% if pattern_analysis.pattern == 'increasing' %}trend-up{% else %}trend-down{% endif %}">
+                    {% if pattern_analysis.pattern == 'increasing' %}
+                        📈 Spending is increasing
+                    {% elif pattern_analysis.pattern == 'decreasing' %}
+                        📉 Spending is decreasing
+                    {% else %}
+                        → Spending is stable
+                    {% endif %}
+                </span>
+            </div>
+            
+            <div class="insights-list">
+                <h4>Key insights</h4>
+                <ul>
+                    {% for insight in pattern_analysis.insights %}
+                        <li>{{ insight }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            {% if pattern_analysis.top_categories %}
+                <div class="top-categories">
+                    <h4>Top spending categories</h4>
+                    <div class="category-list">
+                        {% for category, amount in pattern_analysis.top_categories.items() %}
+                            <div class="category-item">
+                                <span class="category-name">{{ category }}</span>
+                                <span class="category-amount">₹{{ "{:,.2f}".format(amount) }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            
+            {% if pattern_analysis.peak_spending_day %}
+                <div class="peak-day">
+                    <h4>Peak spending day</h4>
+                    <p>{{ pattern_analysis.peak_spending_day }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Monthly Trend Chart -->
+    <div class="prediction-section">
+        <h2>Historical spending trend</h2>
+        <div class="chart-card large">
+            {% if monthly_chart %}
+                <img src="data:image/png;base64,{{ monthly_chart }}" alt="Monthly Trend" class="chart-image">
+            {% else %}
+                <div class="no-data">No historical data available</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="prediction-section">
+        <h2>How predictions work</h2>
+        <div class="info-card">
+            <div class="info-item">
+                <div class="info-icon">📈</div>
+                <div class="info-content">
+                    <h4>Linear Regression Model</h4>
+                    <p>We use a Linear Regression algorithm to analyze your historical spending patterns and predict future expenses.</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">📊</div>
+                <div class="info-content">
+                    <h4>6-Month History</h4>
+                    <p>The model trains on your last 6 months of expense data to identify trends and patterns.</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🎯</div>
+                <div class="info-content">
+                    <h4>Confidence Score</h4>
+                    <p>R² score indicates how well the model fits your data. Higher confidence means more reliable predictions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
