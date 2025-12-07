@@ -160,7 +160,7 @@ Get up and running in under 2 minutes:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/finance-tracker.git
+git clone https://github.com/EobardThawne2/finance-tracker.git
 cd finance-tracker
 
 # Create and activate virtual environment
@@ -195,7 +195,7 @@ python app.py
 <summary><b>1️⃣ Clone the Repository</b></summary>
 
 ```bash
-git clone https://github.com/yourusername/finance-tracker.git
+git clone https://github.com/EobardThawne2/finance-tracker.git
 cd finance-tracker
 ```
 
@@ -865,7 +865,7 @@ Contributions are welcome! Please follow these steps:
 1. **Fork** the repository
 2. **Clone** your fork:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/finance-tracker.git
+   git clone https://github.com/EobardThawne2/finance-tracker.git
    ```
 3. **Create** a feature branch:
    ```bash
@@ -952,7 +952,8 @@ Made with ❤️ by the Finance Tracker Team
 
 <br/>
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/finance-tracker?style=social)](https://github.com/yourusername/finance-tracker)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/finance-tracker?style=social)](https://github.com/yourusername/finance-tracker)
+[![GitHub stars](https://img.shields.io/github/stars/EobardThawne2/finance-tracker?style=social)](https://github.com/EobardThawne2/finance-tracker)
+[![GitHub forks](https://img.shields.io/github/forks/EobardThawne2/finance-tracker?style=social)](https://github.com/EobardThawne2/finance-tracker)
 
 </div>
+
