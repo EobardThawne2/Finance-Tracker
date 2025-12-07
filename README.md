@@ -11,11 +11,11 @@
 
 ### *Intelligent Personal Finance Management with ML-Powered Insights*
 
-[![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Flask](https://img.shields.io/badge/Flask-3.x-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
-[![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.x-green.svg)](https://flask.palletsprojects.com/)
+[![SQLite](https://img.shields.io/badge/SQLite-3-white.svg)](https://sqlite.org)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-yellow.svg)](https://scikit-learn.org)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 <br/>
 
@@ -961,3 +961,4 @@ Made with ❤️ by the Finance Tracker Team
 [![GitHub forks](https://img.shields.io/github/forks/EobardThawne2/finance-tracker?style=social)](https://github.com/EobardThawne2/finance-tracker)
 
 </div>
+
