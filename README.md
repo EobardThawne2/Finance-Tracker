@@ -865,7 +865,7 @@ Contributions are welcome! Please follow these steps:
 1. **Fork** the repository
 2. **Clone** your fork:
    ```bash
-   git clone https://github.com/EobardThawne2/finance-tracker.git
+   git clone https://github.com/<YOUR USERNAME>/finance-tracker.git
    ```
 3. **Create** a feature branch:
    ```bash
@@ -956,4 +956,5 @@ Made with ❤️ by the Finance Tracker Team
 [![GitHub forks](https://img.shields.io/github/forks/EobardThawne2/finance-tracker?style=social)](https://github.com/EobardThawne2/finance-tracker)
 
 </div>
+
 
