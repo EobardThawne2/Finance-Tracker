@@ -1,6 +1,11 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/main/icons/folder-finance.svg" alt="Finance Tracker Logo" width="120" height="120">
+<br/>
+
+<img src="images/logo.png" alt="Finance Tracker Logo" width="200">
+
+<br/>
+<br/>
 
 # 💰 Finance Tracker
 
@@ -865,7 +870,7 @@ Contributions are welcome! Please follow these steps:
 1. **Fork** the repository
 2. **Clone** your fork:
    ```bash
-   git clone https://github.com/<YOUR USERNAME>/finance-tracker.git
+   git clone https://github.com/YOUR_USERNAME/finance-tracker.git
    ```
 3. **Create** a feature branch:
    ```bash
@@ -956,5 +961,3 @@ Made with ❤️ by the Finance Tracker Team
 [![GitHub forks](https://img.shields.io/github/forks/EobardThawne2/finance-tracker?style=social)](https://github.com/EobardThawne2/finance-tracker)
 
 </div>
-
-
